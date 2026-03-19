@@ -4,12 +4,10 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"syscall/js"
 )
 
 func main() {
-	fmt.Println("heree i came wasm i am the osm")
 	js.Global().Set("FormatJson", formatJsonWrapper())
 	select {}
 }

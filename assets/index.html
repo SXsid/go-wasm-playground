@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-image" href="favicon.ico" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
 
     <script src="wasm_exec.js"></script>
+
     <script>
       const go = new Go();
       fetch("playground.wasm")
@@ -15,9 +18,30 @@
           go.run(res.instance);
         });
     </script>
-    <title>Document</title>
+
+    <script defer src="index.js"></script>
+
+    <title>JSON Formatter</title>
   </head>
+
   <body>
-    Hello
+    <div class="container">
+      <h1>JSON Formatter</h1>
+
+      <div class="editor-wrapper">
+        <!-- INPUT -->
+        <div class="editor">
+          <pre id="highlight"></pre>
+          <textarea id="jsonInput" placeholder="Paste JSON here..."></textarea>
+        </div>
+
+        <!-- OUTPUT -->
+        <textarea
+          id="jsonOutput"
+          placeholder="Formatted JSON..."
+          readonly
+        ></textarea>
+      </div>
+    </div>
   </body>
 </html>
