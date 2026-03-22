@@ -17,11 +17,21 @@ func formatJsonWrapper() js.Func {
 		if len(args) != 1 {
 			return "Invalid number of argumnets"
 		}
+		jsDoc := js.Global().Get("document")
+		if !jsDoc.Truthy() {
+			return "Unable to get document object"
+		}
+		jsOutput := jsDoc.Call("querySelector", "#jsonOutput")
+		if !jsOutput.Truthy() {
+			return "Unable to get jsOutput"
+		}
+
 		prettryJson, err := preetify(args[0].String())
 		if err != nil {
 			return err.Error()
 		}
-		return prettryJson
+		jsOutput.Set("value", prettryJson)
+		return nil
 	})
 }
 

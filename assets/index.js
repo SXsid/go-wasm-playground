@@ -2,11 +2,19 @@ document.addEventListener("DOMContentLoaded", () => main());
 const main = () => {
   const jsonOutput = document.querySelector("#jsonOutput");
   const jsonInput = document.querySelector("#jsonInput");
+  let timeout;
   const formatJson = (event) => {
-    console.log("here");
-    console.log(event.target.value);
-    res = FormatJson(event.target.value);
-    jsonOutput.value = res;
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => {
+      res = FormatJson(event.target.value);
+      if (res != null) {
+        alert(res);
+      }
+      console.log(res);
+    }, 300);
   };
 
   jsonInput.addEventListener("input", formatJson);
