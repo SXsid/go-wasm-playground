@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
 
@@ -8,13 +9,15 @@ import (
 )
 
 func main() {
+	port := flag.Int("port", 8080, "HTTP port address")
+	flag.Parse()
 	fileHandler := http.FileServerFS(root.AssetsFS)
 	server := http.Server{
-		Addr:    ":8080",
+		Addr:    fmt.Sprintf(":%d", *port),
 		Handler: fileHandler,
 	}
 
-	fmt.Println("site is up at port 8080")
+	fmt.Printf("site is up at port %d", *port)
 	if err := server.ListenAndServe(); err != nil {
 		panic(err)
 	}
