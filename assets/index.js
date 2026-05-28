@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => main());
 const main = () => {
   const jsonOutput = document.querySelector("#jsonOutput");
   const jsonInput = document.querySelector("#jsonInput");
+  const errDiv = document.querySelector("#errorbox");
   let timeout;
   const formatJson = (event) => {
     if (timeout) {
@@ -10,10 +11,11 @@ const main = () => {
 
     timeout = setTimeout(() => {
       res = FormatJson(event.target.value);
+
+      errDiv.textContent = "";
       if (res != null) {
-        alert(res);
+        errDiv.textContent = res;
       }
-      console.log(res);
     }, 300);
   };
 

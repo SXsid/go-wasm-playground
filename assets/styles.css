@@ -129,3 +129,15 @@ textarea::-webkit-scrollbar-thumb {
     transform: translateY(0);
   }
 }
+#errorbox {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  color: red;
+
+  font-size: 14px;
+  font-family: sans-serif;
+
+  z-index: 9999;
+}
